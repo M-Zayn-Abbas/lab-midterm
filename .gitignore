@@ -1,0 +1,13 @@
+# Secrets - never commit
+*.pem
+.env
+
+# Personal notes / exam paper
+viva-points.md
+*.pdf
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/

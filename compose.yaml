@@ -1,0 +1,44 @@
+services:
+  web:
+    build: .
+    image: task-tracker-web:1.0
+    container_name: task-web
+    ports:
+      - "80:5000"            # host port 80 -> container port 5000
+    environment:
+      DB_HOST: db            # service name = hostname on the Compose network
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      SERVER_NAME: ${SERVER_NAME:-}
+    depends_on:
+      db:
+        condition: service_healthy   # wait until Postgres accepts connections
+    networks:
+      - app-net
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    container_name: task-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - task-db-data:/var/lib/postgresql/data   # named volume = persistent data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - app-net
+    restart: unless-stopped
+    # no "ports:" - the database is only reachable from inside app-net
+
+volumes:
+  task-db-data:
+
+networks:
+  app-net:

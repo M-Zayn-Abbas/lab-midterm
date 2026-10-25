@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Task Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1 id="app-title">Student Task Tracker</h1>
+      <p class="server">Served by: <span id="server-name">{{ server }}</span></p>
+    </header>
+
+    <form id="task-form" action="{{ url_for('add_task') }}" method="post">
+      <input id="task-title" name="title" placeholder="What do you need to do?" required maxlength="200">
+      <select id="task-priority" name="priority">
+        <option>Low</option>
+        <option selected>Medium</option>
+        <option>High</option>
+      </select>
+      <button id="add-task-btn" type="submit">Add Task</button>
+    </form>
+
+    <p id="task-count">{{ tasks|length }} task(s)</p>
+
+    <ul id="task-list">
+      {% for t in tasks %}
+      <li class="task {{ 'done' if t.done }}" data-id="{{ t.id }}">
+        <span class="task-title">{{ t.title }}</span>
+        <span class="badge {{ t.priority|lower }}">{{ t.priority }}</span>
+        <form action="{{ url_for('toggle_task', task_id=t.id) }}" method="post">
+          <button class="toggle-btn" type="submit">{{ 'Undo' if t.done else 'Done' }}</button>
+        </form>
+        <form action="{{ url_for('delete_task', task_id=t.id) }}" method="post">
+          <button class="delete-btn" type="submit">Delete</button>
+        </form>
+      </li>
+      {% else %}
+      <li id="empty-msg">No tasks yet - add one above.</li>
+      {% endfor %}
+    </ul>
+  </main>
+</body>
+</html>

@@ -1,0 +1,12 @@
+.git
+.gitignore
+*.pem
+.env
+*.md
+*.pdf
+tests/
+deploy/
+__pycache__/
+*.pyc
+venv/
+.venv/

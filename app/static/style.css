@@ -1,0 +1,22 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; background: #f3f4f6; color: #111827; }
+.container { max-width: 680px; margin: 40px auto; padding: 0 16px; }
+header { margin-bottom: 20px; }
+h1 { margin: 0 0 4px; }
+.server { margin: 0; color: #6b7280; font-size: 14px; }
+#server-name { font-family: monospace; color: #2563eb; }
+#task-form { display: flex; gap: 8px; margin-bottom: 12px; }
+#task-title { flex: 1; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; }
+select, button { padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; cursor: pointer; }
+#add-task-btn { background: #2563eb; color: #fff; border-color: #2563eb; }
+#task-count { color: #6b7280; font-size: 14px; }
+#task-list { list-style: none; padding: 0; }
+.task { display: flex; align-items: center; gap: 8px; background: #fff; padding: 10px 12px; border-radius: 6px; margin-bottom: 8px; }
+.task-title { flex: 1; }
+.task.done .task-title { text-decoration: line-through; color: #9ca3af; }
+.task form { margin: 0; }
+.delete-btn { color: #dc2626; }
+.badge { font-size: 12px; padding: 2px 8px; border-radius: 999px; }
+.badge.low { background: #dcfce7; }
+.badge.medium { background: #fef9c3; }
+.badge.high { background: #fee2e2; }
