@@ -6,6 +6,8 @@
 *.pdf
 tests/
 deploy/
+docs/
+screenshots/
 __pycache__/
 *.pyc
 venv/

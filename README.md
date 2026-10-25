@@ -4,6 +4,11 @@ A small three-tier web app (HTML frontend, Flask backend, PostgreSQL database) d
 Docker and Docker Compose on AWS EC2 instances behind an Application Load Balancer and an
 Auto Scaling Group, and tested with Selenium WebDriver.
 
+**Live application (AWS Application Load Balancer):**
+http://task-tracker-alb-1135327115.ap-south-1.elb.amazonaws.com/
+
+**Lab report (screenshots for every task):** [SP23-BSE-136 Report.pdf](SP23-BSE-136%20Report.pdf)
+
 ```
 .
 ├── app/
@@ -16,9 +21,10 @@ Auto Scaling Group, and tested with Selenium WebDriver.
 ├── .env.example            # Copy to .env (never commit .env)
 ├── requirements.txt
 ├── deploy/user-data.sh     # EC2 Launch Template user data for the Auto Scaling Group
-└── tests/
-    ├── test_selenium.py    # Selenium end-to-end test
-    └── requirements.txt
+├── tests/
+│   ├── test_selenium.py    # Selenium end-to-end test
+│   └── requirements.txt
+└── SP23-BSE-136 Report.pdf # Lab report
 ```
 
 ## Run with Docker Compose
@@ -35,5 +41,5 @@ Open `http://<server-ip>`. Health check: `http://<server-ip>/health`.
 
 ```bash
 pip install -r tests/requirements.txt
-python tests/test_selenium.py http://<alb-dns-name>
+python tests/test_selenium.py http://task-tracker-alb-1135327115.ap-south-1.elb.amazonaws.com
 ```

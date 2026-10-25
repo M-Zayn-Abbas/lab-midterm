@@ -5,6 +5,16 @@
 # Personal notes / exam paper
 viva-points.md
 *.pdf
+!SP23-BSE-136 Report.pdf
+
+# Word report (submitted as PDF) and Word lock files
+*.docx
+~$*
+
+# Selenium failure screenshots and cleaned report copies (raw screenshots/ are committed)
+*.png
+!screenshots/*.png
+docs/
 
 # Python
 __pycache__/
